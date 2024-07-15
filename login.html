@@ -145,7 +145,7 @@
 </body>
 </html> -->
 
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -244,10 +244,17 @@
         });
     </script>
 </body>
-</html>
+</html> -->
 
 
-<!-- <!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -323,9 +330,9 @@
             <label for="password">Password:</label>
             <input type="password" id="password" name="password" required>
             <div class="toggle-container">
-                <label for="entry">Внесение</label>
+                <label for="vn">Внесение</label>
                 <input type="radio" id="vn" name="actionType" value="vn" required>
-                <label for="withdrawal">Выдача</label>
+                <label for="vd">Выдача</label>
                 <input type="radio" id="vd" name="actionType" value="vd" required>
             </div>
             <button type="submit">Login</button>
@@ -337,28 +344,6 @@
         // Init TWA
         Telegram.WebApp.ready();
 
-        Telegram.WebApp.onEvent('themeChanged', function() {
-            document.documentElement.className = Telegram.WebApp.colorScheme;
-        });
-
-        function setViewportData() {
-            var sizeEl = document.getElementById('viewport-params-size');
-            // sizeEl.innerText = 'width: ' + window.innerWidth + ' x ' + 
-            //     'height: ' + Telegram.WebApp.viewportStableHeight;
-
-            var expandEl = document.querySelector('#viewport-params-expand');
-            // expandEl.innerText = 'Is Expanded: ' + (Telegram.WebApp.isExpanded ? 'true' : 'false');
-        }
-
-        Telegram.WebApp.setHeaderColor('secondary_bg_color');
-
-        setViewportData();
-        Telegram.WebApp.onEvent('viewportChanged', setViewportData);
-
-        Telegram.WebApp.onEvent('themeChanged', function() {
-            document.body.setAttribute('style', '--bg-color:' + Telegram.WebApp.backgroundColor);
-        });
-
         document.addEventListener('DOMContentLoaded', function() {
             let userData = {};
             if (Telegram.WebApp) {
@@ -366,13 +351,11 @@
                 Telegram.WebApp.expand();
                 userData = Telegram.WebApp.initDataUnsafe.user;
                 console.log(userData);
-                document.getElementById('userIdDisplay').textContent = `${userData.username}`; //ID: ${userData.id}
             } else {
                 console.error('Telegram.WebApp не найдено');
             }
         });
-    </script>
-    <script>
+
         document.getElementById('loginForm').addEventListener('submit', function (event) {
             event.preventDefault();
             const password = document.getElementById('password').value;
@@ -391,4 +374,5 @@
         });
     </script>
 </body>
-</html> -->
+</html>
+
