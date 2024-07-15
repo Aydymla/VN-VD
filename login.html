@@ -255,19 +255,26 @@
     <title>Login</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
+            --bg-color: var(--tg-theme-bg-color);
+            font: 12px/18px "Lucida Grande", "Lucida Sans Unicode", Arial, Helvetica, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--tg-theme-text-color);
+            margin: 48px 24px;
+            padding: 0;
+            color-scheme: var(--tg-color-scheme);
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            margin: 0;
         }
         .login-container {
             background-color: #fff;
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            box-sizing: border-box;
         }
         .login-container h1 {
             margin-bottom: 20px;
@@ -277,12 +284,13 @@
             display: block;
             margin-bottom: 5px;
         }
-        .login-container input {
-            width: 100%;
-            padding: 10px;
+        .login-container input[type="password"] {
+            width: calc(100% - 2mm); /* Adjusting for padding */
+            padding: 10px 1mm; /* 1mm padding on the left and right */
             margin-bottom: 20px;
             border: 1px solid #ccc;
             border-radius: 5px;
+            box-sizing: border-box; /* Ensures padding is included in the width */
         }
         .login-container button {
             width: 100%;
@@ -338,11 +346,10 @@
         Telegram.WebApp.ready();
 
         document.addEventListener('DOMContentLoaded', function() {
-            let userData = {};
             if (Telegram.WebApp) {
                 Telegram.WebApp.ready();
                 Telegram.WebApp.expand();
-                userData = Telegram.WebApp.initDataUnsafe.user;
+                const userData = Telegram.WebApp.initDataUnsafe.user;
                 console.log(userData);
             } else {
                 console.error('Telegram.WebApp не найдено');
