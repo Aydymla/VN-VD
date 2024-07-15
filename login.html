@@ -72,7 +72,7 @@
         <h1>Login</h1>
         <form id="loginForm">
             <label for="password">Password:</label>
-            <input type="password" id="password" name="обезьяна" required>
+            <input type="password" id="password" name="password" required>
             <div class="toggle-container">
                 <label for="entry">Внесение</label>
                 <input type="radio" id="vn" name="actionType" value="vn" required>
@@ -90,7 +90,7 @@
             const actionType = document.querySelector('input[name="actionType"]:checked').value;
             
             // Simple hardcoded authentication
-            if (password === 'password') {
+            if (password === '12345') {
                 if (actionType === 'vn') {
                     window.location.href = 'vn.html';
                 } else if (actionType === 'vd') {
