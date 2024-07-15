@@ -246,7 +246,6 @@
 </body>
 </html> -->
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -255,38 +254,33 @@
     <title>Login</title>
     <style>
         body {
-            --bg-color: var(--tg-theme-bg-color, #f0f0f0);
-            --text-color: var(--tg-theme-text-color, #000);
+            --bg-color: var(--tg-theme-bg-color);
             font: 12px/18px "Lucida Grande", "Lucida Sans Unicode", Arial, Helvetica, Verdana, sans-serif;
             background-color: var(--bg-color);
-            color: var(--text-color);
-            margin: 0;
+            color: var(--tg-theme-text-color);
+            margin: 48px 24px;
+            padding: 0;
+            color-scheme: var(--tg-color-scheme);
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            padding: 0 1mm; /* Add padding to ensure some spacing on very small screens */
         }
-        .login-container {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        form {
             width: 100%;
             max-width: 400px;
             box-sizing: border-box;
         }
-        .login-container h1 {
+        h1 {
             margin-bottom: 20px;
             font-size: 24px;
-            color: var(--text-color); /* Ensure text color follows theme */
+            text-align: center;
         }
-        .login-container label {
+        label {
             display: block;
             margin-bottom: 5px;
-            color: var(--text-color); /* Ensure text color follows theme */
         }
-        .login-container input[type="password"] {
+        input[type="password"] {
             width: calc(100% - 2mm); /* Adjusting for padding */
             padding: 10px 1mm; /* 1mm padding on the left and right */
             margin-bottom: 20px;
@@ -294,7 +288,7 @@
             border-radius: 5px;
             box-sizing: border-box; /* Ensures padding is included in the width */
         }
-        .login-container button {
+        button {
             width: 100%;
             padding: 10px;
             background-color: #007bff;
@@ -304,45 +298,43 @@
             cursor: pointer;
             font-size: 16px;
         }
-        .login-container button:hover {
+        button:hover {
             background-color: #0056b3;
         }
-        .login-container .toggle-container {
+        .toggle-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 20px;
         }
-        .login-container .toggle-container label {
+        .toggle-container label {
             font-size: 16px;
-            color: var(--text-color); /* Ensure text color follows theme */
         }
-        .login-container .toggle-container input {
+        .toggle-container input {
             width: auto;
             margin: 0;
         }
         .error-message {
             color: red;
             display: none;
+            text-align: center;
         }
     </style>
 </head>
 <body>
-    <div class="login-container">
+    <form id="loginForm">
         <h1>Login</h1>
-        <form id="loginForm">
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required>
-            <div class="toggle-container">
-                <label for="vn">Внесение</label>
-                <input type="radio" id="vn" name="actionType" value="vn" required>
-                <label for="vd">Выдача</label>
-                <input type="radio" id="vd" name="actionType" value="vd" required>
-            </div>
-            <button type="submit">Login</button>
-            <p class="error-message" id="errorMessage">Invalid password</p>
-        </form>
-    </div>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+        <div class="toggle-container">
+            <label for="vn">Внесение</label>
+            <input type="radio" id="vn" name="actionType" value="vn" required>
+            <label for="vd">Выдача</label>
+            <input type="radio" id="vd" name="actionType" value="vd" required>
+        </div>
+        <button type="submit">Login</button>
+        <p class="error-message" id="errorMessage">Invalid password</p>
+    </form>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script>
         // Init TWA
@@ -378,3 +370,4 @@
     </script>
 </body>
 </html>
+
