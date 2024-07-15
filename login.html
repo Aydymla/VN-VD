@@ -48,6 +48,19 @@
         .login-container button:hover {
             background-color: #0056b3;
         }
+        .login-container .toggle-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .login-container .toggle-container label {
+            font-size: 16px;
+        }
+        .login-container .toggle-container input {
+            width: auto;
+            margin: 0;
+        }
         .error-message {
             color: red;
             display: none;
@@ -58,26 +71,32 @@
     <div class="login-container">
         <h1>Login</h1>
         <form id="loginForm">
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username" required>
             <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required>
+            <input type="password" id="password" name="обезьяна" required>
+            <div class="toggle-container">
+                <label for="entry">Внесение</label>
+                <input type="radio" id="vn" name="actionType" value="vn" required>
+                <label for="withdrawal">Выдача</label>
+                <input type="radio" id="vd" name="actionType" value="vd" required>
+            </div>
             <button type="submit">Login</button>
-            <p class="error-message" id="errorMessage">Invalid username or password</p>
+            <p class="error-message" id="errorMessage">Invalid password</p>
         </form>
     </div>
     <script>
         document.getElementById('loginForm').addEventListener('submit', function (event) {
             event.preventDefault();
-            const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
+            const actionType = document.querySelector('input[name="actionType"]:checked').value;
             
             // Simple hardcoded authentication
-            if (username === 'admin' && password === 'password') {
-                // Redirect to the main report form page
-                window.location.href = 'vn.html';
+            if (password === 'password') {
+                if (actionType === 'vn') {
+                    window.location.href = 'vn.html';
+                } else if (actionType === 'vd') {
+                    window.location.href = 'vd.html';
+                }
             } else {
-                // Display error message
                 document.getElementById('errorMessage').style.display = 'block';
             }
         });
