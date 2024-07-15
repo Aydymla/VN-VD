@@ -255,17 +255,17 @@
     <title>Login</title>
     <style>
         body {
-            --bg-color: var(--tg-theme-bg-color);
+            --bg-color: var(--tg-theme-bg-color, #f0f0f0);
+            --text-color: var(--tg-theme-text-color, #000);
             font: 12px/18px "Lucida Grande", "Lucida Sans Unicode", Arial, Helvetica, Verdana, sans-serif;
             background-color: var(--bg-color);
-            color: var(--tg-theme-text-color);
-            margin: 48px 24px;
-            padding: 0;
-            color-scheme: var(--tg-color-scheme);
+            color: var(--text-color);
+            margin: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
+            padding: 0 1mm; /* Add padding to ensure some spacing on very small screens */
         }
         .login-container {
             background-color: #fff;
@@ -279,10 +279,12 @@
         .login-container h1 {
             margin-bottom: 20px;
             font-size: 24px;
+            color: var(--text-color); /* Ensure text color follows theme */
         }
         .login-container label {
             display: block;
             margin-bottom: 5px;
+            color: var(--text-color); /* Ensure text color follows theme */
         }
         .login-container input[type="password"] {
             width: calc(100% - 2mm); /* Adjusting for padding */
@@ -313,6 +315,7 @@
         }
         .login-container .toggle-container label {
             font-size: 16px;
+            color: var(--text-color); /* Ensure text color follows theme */
         }
         .login-container .toggle-container input {
             width: auto;
