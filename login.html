@@ -6,36 +6,41 @@
     <title>Login</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
+            --bg-color: var(--tg-theme-bg-color);
+            font: 12px/18px "Lucida Grande", "Lucida Sans Unicode", Arial, Helvetica, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--tg-theme-text-color);
+            margin: 48px 24px;
+            padding: 0;
+            color-scheme: var(--tg-color-scheme);
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            margin: 0;
         }
-        .login-container {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        form {
+            width: 100%;
+            max-width: 400px;
+            box-sizing: border-box;
         }
-        .login-container h1 {
+        h1 {
             margin-bottom: 20px;
             font-size: 24px;
+            text-align: center;
         }
-        .login-container label {
+        label {
             display: block;
             margin-bottom: 5px;
         }
-        .login-container input {
-            width: 100%;
-            padding: 10px;
+        input[type="password"] {
+            width: calc(100% - 2mm); /* Adjusting for padding */
+            padding: 10px 1mm; /* 1mm padding on the left and right */
             margin-bottom: 20px;
             border: 1px solid #ccc;
             border-radius: 5px;
+            box-sizing: border-box; /* Ensures padding is included in the width */
         }
-        .login-container button {
+        button {
             width: 100%;
             padding: 10px;
             background-color: #007bff;
@@ -45,86 +50,59 @@
             cursor: pointer;
             font-size: 16px;
         }
-        .login-container button:hover {
+        button:hover {
             background-color: #0056b3;
         }
-        .login-container .toggle-container {
+        .toggle-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 20px;
         }
-        .login-container .toggle-container label {
+        .toggle-container label {
             font-size: 16px;
         }
-        .login-container .toggle-container input {
+        .toggle-container input {
             width: auto;
             margin: 0;
         }
         .error-message {
             color: red;
             display: none;
+            text-align: center;
         }
     </style>
 </head>
 <body>
-    <div class="login-container">
+    <form id="loginForm">
         <h1>Login</h1>
-        <form id="loginForm">
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required>
-            <div class="toggle-container">
-                <label for="entry">Внесение</label>
-                <input type="radio" id="vn" name="actionType" value="vn" required>
-                <label for="withdrawal">Выдача</label>
-                <input type="radio" id="vd" name="actionType" value="vd" required>
-            </div>
-            <button type="submit">Login</button>
-            <p class="error-message" id="errorMessage">Invalid password</p>
-        </form>
-    </div>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+        <div class="toggle-container">
+            <label for="vn">Внесение</label>
+            <input type="radio" id="vn" name="actionType" value="vn" required>
+            <label for="vd">Выдача</label>
+            <input type="radio" id="vd" name="actionType" value="vd" required>
+        </div>
+        <button type="submit">Login</button>
+        <p class="error-message" id="errorMessage">Invalid password</p>
+    </form>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script>
         // Init TWA
         Telegram.WebApp.ready();
 
-        Telegram.WebApp.onEvent('themeChanged', function() {
-            document.documentElement.className = Telegram.WebApp.colorScheme;
-        });
-
-        function setViewportData() {
-            var sizeEl = document.getElementById('viewport-params-size');
-            // sizeEl.innerText = 'width: ' + window.innerWidth + ' x ' + 
-            //     'height: ' + Telegram.WebApp.viewportStableHeight;
-
-            var expandEl = document.querySelector('#viewport-params-expand');
-            // expandEl.innerText = 'Is Expanded: ' + (Telegram.WebApp.isExpanded ? 'true' : 'false');
-        }
-
-        Telegram.WebApp.setHeaderColor('secondary_bg_color');
-
-        setViewportData();
-        Telegram.WebApp.onEvent('viewportChanged', setViewportData);
-
-        Telegram.WebApp.onEvent('themeChanged', function() {
-            document.body.setAttribute('style', '--bg-color:' + Telegram.WebApp.backgroundColor);
-        });
-
-        document.addEventListener('DOMContentLoaded', async function() {
-            let userData = {};
+        document.addEventListener('DOMContentLoaded', function() {
             if (Telegram.WebApp) {
                 Telegram.WebApp.ready();
                 Telegram.WebApp.expand();
-                userData = Telegram.WebApp.initDataUnsafe.user;
+                const userData = Telegram.WebApp.initDataUnsafe.user;
                 console.log(userData);
-                document.getElementById('userIdDisplay').textContent = `${userData.username}`; //ID: ${userData.id}
             } else {
                 console.error('Telegram.WebApp не найдено');
             }
+        });
 
-            });
-    </script>
-    <script>
         document.getElementById('loginForm').addEventListener('submit', function (event) {
             event.preventDefault();
             const password = document.getElementById('password').value;
@@ -145,106 +123,6 @@
 </body>
 </html> -->
 
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-        .login-container {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        .login-container h1 {
-            margin-bottom: 20px;
-            font-size: 24px;
-        }
-        .login-container .toggle-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-        .login-container .toggle-container label {
-            font-size: 16px;
-        }
-        .login-container .toggle-container input {
-            width: auto;
-            margin: 0;
-        }
-        .login-container button {
-            width: 100%;
-            padding: 10px;
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        .login-container button:hover {
-            background-color: #0056b3;
-        }
-        .error-message {
-            color: red;
-            display: none;
-        }
-    </style>
-</head>
-<body>
-    <div class="login-container">
-        <h1>Login</h1>
-        <div class="toggle-container">
-            <label for="entry">Внесение</label>
-            <input type="radio" id="entry" name="actionType" value="entry" required>
-            <label for="withdrawal">Выдача</label>
-            <input type="radio" id="withdrawal" name="actionType" value="withdrawal" required>
-        </div>
-        <button id="loginButton">Login with Biometrics</button>
-        <p class="error-message" id="errorMessage">Biometric authentication failed</p>
-    </div>
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
-    <script>
-        document.getElementById('loginButton').addEventListener('click', function () {
-            const actionType = document.querySelector('input[name="actionType"]:checked').value;
-            
-            // Check if biometric authentication is available
-            if (Telegram.WebApp.isExpanded) {
-                Telegram.WebApp.readText({
-                    method: 'biometric'
-                }).then(result => {
-                    if (result.success) {
-                        if (actionType === 'entry') {
-                            window.location.href = 'vn.html';
-                        } else if (actionType === 'withdrawal') {
-                            window.location.href = 'report.html';
-                        }
-                    } else {
-                        document.getElementById('errorMessage').style.display = 'block';
-                    }
-                }).catch(error => {
-                    console.error('Biometric authentication failed:', error);
-                    document.getElementById('errorMessage').style.display = 'block';
-                });
-            } else {
-                document.getElementById('errorMessage').style.display = 'block';
-            }
-        });
-    </script>
-</body>
-</html> -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -258,13 +136,11 @@
             font: 12px/18px "Lucida Grande", "Lucida Sans Unicode", Arial, Helvetica, Verdana, sans-serif;
             background-color: var(--bg-color);
             color: var(--tg-theme-text-color);
-            margin: 48px 24px;
-            padding: 0;
+            margin: 0;
+            padding: 10mm 24px 0 24px;
             color-scheme: var(--tg-color-scheme);
             display: flex;
             justify-content: center;
-            align-items: center;
-            height: 100vh;
         }
         form {
             width: 100%;
