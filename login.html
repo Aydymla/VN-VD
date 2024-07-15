@@ -254,13 +254,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <style>
-        <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <style>
+/*         body {
+            --bg-color: var(--tg-theme-bg-color);
+            font: 12px/18px "Lucida Grande", "Lucida Sans Unicode", Arial, Helvetica, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--tg-theme-text-color);
+            margin: 48px 24px;
+            padding: 0;
+            color-scheme: var(--tg-color-scheme);
+        } */
+        
         body {
             font-family: Arial, sans-serif;
             background-color: #f0f0f0;
@@ -285,11 +288,12 @@
             margin-bottom: 5px;
         }
         .login-container input {
-            width: 100%;
-            padding: 10px;
+            width: calc(100% - 2mm); /* Adjusting for padding */
+            padding: 10px 1mm; /* 1mm padding on the left and right */
             margin-bottom: 20px;
             border: 1px solid #ccc;
             border-radius: 5px;
+            box-sizing: border-box; /* Ensures padding is included in the width */
         }
         .login-container button {
             width: 100%;
@@ -375,4 +379,3 @@
     </script>
 </body>
 </html>
-
