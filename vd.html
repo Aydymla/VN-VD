@@ -62,28 +62,6 @@
             max-width: 400px;
             box-sizing: border-box;
         }
-        .fuel-type-buttons {
-            display: flex;
-            gap: 10px;
-            margin-top: 10px;
-        }
-        .fuel-type-buttons button {
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-            border: none;
-            border-radius: 5px;
-            background-color: #ddd;
-            color: #333;
-        }
-        .fuel-type-buttons .active {
-            background-color: #007bff;
-            color: #fff;
-        }
-        #photo1, #photo2, #photo3 {
-            width: 100%;
-            max-width: 400px;
-        }
         #userIdDisplay {
             position: fixed;
             top: 10px;
@@ -154,11 +132,6 @@
 
         function setViewportData() {
             var sizeEl = document.getElementById('viewport-params-size');
-            // sizeEl.innerText = 'width: ' + window.innerWidth + ' x ' + 
-            //     'height: ' + Telegram.WebApp.viewportStableHeight;
-
-            var expandEl = document.querySelector('#viewport-params-expand');
-            // expandEl.innerText = 'Is Expanded: ' + (Telegram.WebApp.isExpanded ? 'true' : 'false');
         }
 
         Telegram.WebApp.setHeaderColor('secondary_bg_color');
@@ -177,7 +150,7 @@
                 Telegram.WebApp.expand();
                 userData = Telegram.WebApp.initDataUnsafe.user;
                 console.log(userData);
-                document.getElementById('userIdDisplay').textContent = `${userData.username}`; //ID: ${userData.id}
+                document.getElementById('userIdDisplay').textContent = `${userData.username}`;
             } else {
                 console.error('Telegram.WebApp не найдено');
             }
@@ -237,6 +210,7 @@
                 const formData = new FormData(form);
                 formData.append('tgUserId', userData.id || '');
                 formData.append('tgUserName', userData.username || '');
+                formData.append('operation', 'Vidacha');
 
                 try {
                     const response = await fetch('https://script.google.com/macros/s/AKfycbx0ZrTyKAsCLQJpnANA22Or1Jf_0jSucpLDtwKpbyXw7OHgZhZe0sn_bQrMYCN4R0AV/exec', {
