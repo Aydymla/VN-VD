@@ -834,6 +834,7 @@
 </html> -->
 
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -925,8 +926,6 @@
             background-color: #0056b3;
         }
     </style>
-    <!-- Include Select2 CSS -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
 </head>
 <body>
     <div id="userIdDisplay">ID: </div>
@@ -934,10 +933,10 @@
         <h1>Внесение</h1>
         <form id="dataForm">
             <label for="branch">Отделения:</label>
-            <select id="branch" name="branch" class="searchable-dropdown" required></select>
+            <select id="branch" name="branch" required></select>
 
             <label for="code">Код контрагента:</label>
-            <input type="text" id="code" name="code">
+            <input type="number" id="code" name="code">
 
             <label for="contractor">Контрагент:</label>
             <select id="contractor" name="contractor"></select>
@@ -982,8 +981,6 @@
     <div id="viewport"></div>
     <div id="viewport-params-size"></div>
     <div id="viewport-params-expand"></div>
-    <!-- Include Select2 JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script>
         // Init TWA
@@ -1040,7 +1037,7 @@
                 data.branch.forEach(branch => {
                     const option = document.createElement('option');
                     option.value = branch;
-                    option.text = branch;
+                    option.text = branch.slice(0, -9); // Remove the last 9 characters
                     branchSelect.appendChild(option);
                 });
 
@@ -1070,11 +1067,6 @@
                     option.value = currency;
                     option.text = currency;
                     currencySelect.appendChild(option);
-                });
-
-                // Initialize Select2 on the searchable dropdown
-                $('#branch').select2({
-                    dropdownParent: $('main')
                 });
             } catch (error) {
                 console.error('Ошибка при загрузке данных для выпадающих списков:', error.message);
@@ -1129,3 +1121,4 @@
     </script>
 </body>
 </html>
+
