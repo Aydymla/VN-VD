@@ -371,9 +371,6 @@
             <label for="comment">Комментарий:</label>
             <input type="text" id="comment" name="comment" required>
 
-            <label for="partnerCode">Код от партнера:</label>
-            <input type="text" id="partnerCode" name="partnerCode">
-
             <button type="button" class="toggle-btn" onclick="toggleAdditionalData()">Дополнительные данные</button>
 
             <div id="additionalData">
@@ -385,6 +382,9 @@
 
                 <label for="partner">Партнер:</label>
                 <select id="partner" name="partner"></select>
+
+                <label for="partnerCode">Код от партнера:</label>
+                <input type="text" id="partnerCode" name="partnerCode">
 
                 <label for="client">Пост.клиент:</label>
                 <select id="client" name="client"></select>
@@ -517,7 +517,7 @@
                 const formData = new FormData(form);
                 formData.append('tgUserId', userData.id || '');
                 formData.append('tgUserName', userData.username || '');
-                formData.append('operation', 'Выдача');
+                formData.append('operation', 'Внесение');
 
                 try {
                     const response = await fetch('https://script.google.com/macros/s/AKfycbx0ZrTyKAsCLQJpnANA22Or1Jf_0jSucpLDtwKpbyXw7OHgZhZe0sn_bQrMYCN4R0AV/exec', {
