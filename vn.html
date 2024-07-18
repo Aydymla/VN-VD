@@ -1421,7 +1421,7 @@
         body {
             --bg-color: var(--tg-theme-bg-color);
             font: 12px/18px "Lucida Grande", "Lucida Sans Unicode", Arial, Helvetica, Verdana, sans-serif;
-            background-image: url('https://kartinki.pics/uploads/posts/2021-07/1626829732_32-kartinkin-com-p-zadnii-fon-cherno-belii-krasivo-32.jpg');
+/*             background-image: url('https://kartinki.pics/uploads/posts/2021-07/1626829732_32-kartinkin-com-p-zadnii-fon-cherno-belii-krasivo-32.jpg'); */
             background-size: cover;
             background-position: center;
             color: var(--tg-theme-text-color);
@@ -1638,14 +1638,14 @@
                 data.partner.forEach(partner => {
                     const option = document.createElement('option');
                     option.value = partner;
-                    option.text = partner;
+                    option.text = partner.slice(0, -9); // Удалить последние 9 символов;
                     partnerSelect.appendChild(option);
                 });
 
                 data.client.forEach(client => {
                     const option = document.createElement('option');
                     option.value = client;
-                    option.text = client;
+                    option.text = client.slice(0, -9); // Удалить последние 9 символов;
                     clientSelect.appendChild(option);
                 });
 
