@@ -458,14 +458,14 @@
                 data.partner.forEach(partner => {
                     const option = document.createElement('option');
                     option.value = partner;
-                    option.text = partner;
+                    option.text = partner.slice(0, -9);
                     partnerSelect.appendChild(option);
                 });
 
                 data.client.forEach(client => {
                     const option = document.createElement('option');
                     option.value = client;
-                    option.text = client;
+                    option.text = client.slice(0, -9);
                     clientSelect.appendChild(option);
                 });
 
