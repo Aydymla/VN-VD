@@ -1128,7 +1128,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Vnesenie</title>
+    <title>Vnesenie</title></title>
     <style>
         body {
             --bg-color: var(--tg-theme-bg-color);
@@ -1212,33 +1212,10 @@
         .toggle-btn:hover {
             background-color: #0056b3;
         }
-        .keyboard-btn {
-            position: fixed;
-            top: 10px;
-            right: 10px;
-            background-color: #28a745;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            padding: 10px 20px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        .keyboard-btn:hover {
-            background-color: #218838;
-        }
-        #hiddenInput {
-            position: absolute;
-            opacity: 0;
-            height: 0;
-            width: 0;
-            pointer-events: none;
-        }
     </style>
 </head>
 <body>
     <div id="userIdDisplay">ID: </div>
-    <button class="keyboard-btn" onclick="toggleKeyboard()">Toggle Keyboard</button>
     <main>
         <h1>Внесение</h1>
         <form id="dataForm">
@@ -1246,7 +1223,7 @@
             <select id="branch" name="branch" required></select>
 
             <label for="code">Код контрагента:</label>
-            <input type="text" id="code" name="code">
+            <input type="tel" id="code" name="code">
 
             <label for="contractor">Контрагент:</label>
             <select id="contractor" name="contractor"></select>
@@ -1257,8 +1234,8 @@
             <label for="currency">Валюта:</label>
             <select id="currency" name="currency" required></select>
 
-            <label for="phone">Номер телефона:</label>
-            <input type="tel" id="phone" name="phone">
+            <label for="phone">Контакт:</label>
+            <input type="text" id="phone" name="phone">
 
             <label for="comment">Комментарий:</label>
             <input type="text" id="comment" name="comment" required>
@@ -1287,7 +1264,6 @@
 
             <input class="submit-btn" type="submit" value="Отправить">
         </form>
-        <input type="text" id="hiddenInput">
     </main>
     <div id="viewport"></div>
     <div id="viewport-params-size"></div>
@@ -1321,14 +1297,6 @@
             } else {
                 additionalData.style.display = 'none';
             }
-        }
-
-        function toggleKeyboard() {
-            const hiddenInput = document.getElementById('hiddenInput');
-            hiddenInput.focus();
-            setTimeout(() => {
-                hiddenInput.blur();
-            }, 300);
         }
 
         document.addEventListener('DOMContentLoaded', async function() {
@@ -1370,14 +1338,14 @@
                 data.partner.forEach(partner => {
                     const option = document.createElement('option');
                     option.value = partner;
-                    option.text = partner;
+                    option.text = partner.slice(0, -9);
                     partnerSelect.appendChild(option);
                 });
 
                 data.client.forEach(client => {
                     const option = document.createElement('option');
                     option.value = client;
-                    option.text = client;
+                    option.text = client.slice(0, -9);
                     clientSelect.appendChild(option);
                 });
 
