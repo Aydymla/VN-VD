@@ -646,6 +646,22 @@
             color: #000; /* Черный цвет текста */
         }
 
+        button-1, .action-button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+/*             color: #fff; */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        button-1:hover, .action-button:hover {
+            background-color: #0056b3;
+        }
+        
         button, .action-button {
             width: 100%;
             padding: 10px;
@@ -684,10 +700,10 @@
     <form id="loginForm">
         <label for="password">ПАРОЛЬ:</label>
         <input type="password" id="password" name="password" required>
-        <div class="toggle-container">
-            <button type="button" class="action-button" id="vn" name="actionType" value="vn" onclick="selectAction('vn')">Внесение</button>
-            <button type="button" class="action-button" id="vd" name="actionType" value="vd" onclick="selectAction('vd')">Выдача</button>
-        </div>
+<!--         <div class="toggle-container"> -->
+            <button type="button-1" class="action-button" id="vn" name="actionType" value="vn" onclick="selectAction('vn')">Внесение</button>
+            <button type="button-1" class="action-button" id="vd" name="actionType" value="vd" onclick="selectAction('vd')">Выдача</button>
+<!--         </div> -->
         <input type="hidden" id="selectedAction" name="selectedAction" required>
         <button type="submit">ВХОД</button>
         <p class="error-message" id="errorMessage">Invalid password</p>
