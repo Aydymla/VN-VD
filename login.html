@@ -318,15 +318,19 @@
             margin-bottom: 10px;
         }
 
-        h1 {
+/*         h1 {
             margin-bottom: 20px;
             font-size: 24px;
             text-align: center;
-        }
+        } */
 
         label {
             display: block;
             margin-bottom: 5px;
+            
+            margin-bottom: 20px;
+            font-size: 24px;
+            text-align: center;
         }
 
         input[type="password"], input[type="radio"] {
@@ -380,8 +384,8 @@
 </head>
 <body>
     <form id="loginForm">
-        <h1>Login</h1>
-        <label for="password">Password:</label>
+<!--         <h1>Login</h1> -->
+        <label for="password">ПАРОЛЬ:</label>
         <input type="password" id="password" name="password" required>
         <div class="toggle-container">
             <label for="vn">Внесение</label>
@@ -389,7 +393,7 @@
             <label for="vd">Выдача</label>
             <input type="radio" id="vd" name="actionType" value="vd" required>
         </div>
-        <button type="submit">Login</button>
+        <button type="submit">ВХОД</button>
         <p class="error-message" id="errorMessage">Invalid password</p>
     </form>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
