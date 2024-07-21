@@ -588,7 +588,7 @@
  -->
 
 
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -620,7 +620,7 @@
             border-radius: 10px;
         }
 
-        h1, label {
+        h1, label, .toggle-container {
             background-color: #ffffff; /* Белый фон */
             color: #000000; /* Черный цвет текста */
             padding: 10px;
@@ -630,12 +630,13 @@
 
         label {
             display: block;
+            margin-bottom: 5px;
             margin-bottom: 20px;
             font-size: 24px;
             text-align: center;
         }
 
-        input[type="password"] {
+        input[type="password"], input[type="radio"] {
             width: calc(100% - 2mm); /* Учитывая padding */
             padding: 10px 1mm; /* 1mm padding слева и справа */
             margin-bottom: 20px;
@@ -646,24 +647,12 @@
             color: #000; /* Черный цвет текста */
         }
 
-        button-1, .action-button {
-            width: 100%;
-            padding: 10px;
-            background-color: #007bff;
-/*             color: #fff; */
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            margin-bottom: 10px;
+        label[for="password"] {
+            background-color: yellow; /* Желтый фон для "ПАРОЛЬ" */
         }
 
-        button-1:hover, .action-button:hover {
-            background-color: #0056b3;
-        }
-        
-        button, .action-button {
-            width: 100%;
+        button {
+            width: 125%; /* Увеличиваем ширину на 25% */
             padding: 10px;
             background-color: #007bff;
             color: #fff;
@@ -671,10 +660,10 @@
             border-radius: 5px;
             cursor: pointer;
             font-size: 16px;
-            margin-bottom: 10px;
+            margin-top: 20px; /* Дополнительное пространство сверху */
         }
 
-        button:hover, .action-button:hover {
+        button:hover {
             background-color: #0056b3;
         }
 
@@ -685,14 +674,32 @@
             margin-bottom: 20px;
         }
 
+        .toggle-btn {
+            width: 48%;
+            padding: 10px;
+            background-color: #fff;
+            color: #000;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            text-align: center;
+        }
+
+        .toggle-btn.active {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        .toggle-btn:hover {
+            background-color: #0056b3;
+            color: #fff;
+        }
+
         .error-message {
             color: red;
             display: none;
             text-align: center;
-        }
-
-        .action-button.active {
-            background-color: #0056b3;
         }
     </style>
 </head>
@@ -700,11 +707,11 @@
     <form id="loginForm">
         <label for="password">ПАРОЛЬ:</label>
         <input type="password" id="password" name="password" required>
-<!--         <div class="toggle-container"> -->
-            <button type="button-1" class="action-button" id="vn" name="actionType" value="vn" onclick="selectAction('vn')">Внесение</button>
-            <button type="button-1" class="action-button" id="vd" name="actionType" value="vd" onclick="selectAction('vd')">Выдача</button>
-<!--         </div> -->
-        <input type="hidden" id="selectedAction" name="selectedAction" required>
+        <div class="toggle-container">
+            <div id="vn" class="toggle-btn" onclick="selectActionType('vn')">Внесение</div>
+            <div id="vd" class="toggle-btn" onclick="selectActionType('vd')">Выдача</div>
+            <input type="hidden" id="actionType" name="actionType" required>
+        </div>
         <button type="submit">ВХОД</button>
         <p class="error-message" id="errorMessage">Invalid password</p>
     </form>
@@ -724,19 +731,18 @@
             }
         });
 
-        function selectAction(action) {
-            document.getElementById('selectedAction').value = action;
-            document.querySelectorAll('.action-button').forEach(button => {
-                button.classList.remove('active');
-            });
-            document.getElementById(action).classList.add('active');
+        function selectActionType(type) {
+            document.getElementById('vn').classList.remove('active');
+            document.getElementById('vd').classList.remove('active');
+            document.getElementById(type).classList.add('active');
+            document.getElementById('actionType').value = type;
         }
 
         document.getElementById('loginForm').addEventListener('submit', function (event) {
             event.preventDefault();
             const password = document.getElementById('password').value;
-            const actionType = document.getElementById('selectedAction').value;
-
+            const actionType = document.getElementById('actionType').value;
+            
             // Simple hardcoded authentication
             if (password === '12345') {
                 if (actionType === 'vn') {
