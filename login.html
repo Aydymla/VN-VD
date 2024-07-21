@@ -432,7 +432,7 @@
 </html>
  -->
 
- <!DOCTYPE html>
+<!--  <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -537,7 +537,7 @@
     <form id="loginForm">
         <label for="password">ПАРОЛЬ:</label>
         <input type="password" id="password" name="password" required>
-<!--         <div class="toggle-container"> -->
+        <div class="toggle-container">
             <label for="vn">
                 <input type="radio" id="vn" name="actionType" value="vn" required>
                 Внесение
@@ -546,7 +546,7 @@
                 <input type="radio" id="vd" name="actionType" value="vd" required>
                 Выдача
             </label>
-<!--         </div> -->
+        </div>
         <button type="submit">ВХОД</button>
         <p class="error-message" id="errorMessage">Invalid password</p>
     </form>
@@ -571,6 +571,156 @@
             const password = document.getElementById('password').value;
             const actionType = document.querySelector('input[name="actionType"]:checked').value;
             
+            // Simple hardcoded authentication
+            if (password === '12345') {
+                if (actionType === 'vn') {
+                    window.location.href = 'vn.html';
+                } else if (actionType === 'vd') {
+                    window.location.href = 'vd.html';
+                }
+            } else {
+                document.getElementById('errorMessage').style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>
+ -->
+
+
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body {
+            --bg-color: var(--tg-theme-bg-color);
+            font: 12px/18px "Lucida Grande", "Lucida Sans Unicode", Arial, Helvetica, Verdana, sans-serif;
+            background-image: url('https://celes.club/uploads/posts/2022-06/thumbs/1654547949_37-celes-club-p-ukrainskie-oboi-krasivie-46.jpg');
+            background-size: cover;
+            background-position: center;
+            color: #000000;
+            margin: 0;
+            padding: 10mm 24px 0 24px;
+            color-scheme: var(--tg-color-scheme);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        form {
+            width: 100%;
+            max-width: 400px;
+            box-sizing: border-box;
+            background: rgba(0, 0, 0, 0.5); /* Полупрозрачный черный фон */
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        h1, label {
+            background-color: #ffffff; /* Белый фон */
+            color: #000000; /* Черный цвет текста */
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 20px;
+            font-size: 24px;
+            text-align: center;
+        }
+
+        input[type="password"] {
+            width: calc(100% - 2mm); /* Учитывая padding */
+            padding: 10px 1mm; /* 1mm padding слева и справа */
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box; /* Учитывает padding в ширине */
+            background: rgba(255, 255, 255, 0.5); /* Полупрозрачный белый фон */
+            color: #000; /* Черный цвет текста */
+        }
+
+        button, .action-button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        button:hover, .action-button:hover {
+            background-color: #0056b3;
+        }
+
+        .toggle-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .error-message {
+            color: red;
+            display: none;
+            text-align: center;
+        }
+
+        .action-button.active {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <form id="loginForm">
+        <label for="password">ПАРОЛЬ:</label>
+        <input type="password" id="password" name="password" required>
+        <div class="toggle-container">
+            <button type="button" class="action-button" id="vn" name="actionType" value="vn" onclick="selectAction('vn')">Внесение</button>
+            <button type="button" class="action-button" id="vd" name="actionType" value="vd" onclick="selectAction('vd')">Выдача</button>
+        </div>
+        <input type="hidden" id="selectedAction" name="selectedAction" required>
+        <button type="submit">ВХОД</button>
+        <p class="error-message" id="errorMessage">Invalid password</p>
+    </form>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script>
+        // Init TWA
+        Telegram.WebApp.ready();
+
+        document.addEventListener('DOMContentLoaded', function() {
+            if (Telegram.WebApp) {
+                Telegram.WebApp.ready();
+                Telegram.WebApp.expand();
+                const userData = Telegram.WebApp.initDataUnsafe.user;
+                console.log(userData);
+            } else {
+                console.error('Telegram.WebApp не найдено');
+            }
+        });
+
+        function selectAction(action) {
+            document.getElementById('selectedAction').value = action;
+            document.querySelectorAll('.action-button').forEach(button => {
+                button.classList.remove('active');
+            });
+            document.getElementById(action).classList.add('active');
+        }
+
+        document.getElementById('loginForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+            const password = document.getElementById('password').value;
+            const actionType = document.getElementById('selectedAction').value;
+
             // Simple hardcoded authentication
             if (password === '12345') {
                 if (actionType === 'vn') {
