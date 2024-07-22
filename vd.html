@@ -546,7 +546,8 @@
             background-image: url('./Logo.png');
             background-size: cover;
             background-position: center;
-            color: var(--tg-theme-text-color);
+/*             color: var(--tg-theme-text-color); */
+            color: #ffffff;
             margin: 0;
             padding: 10mm 24px 0 24px;
             color-scheme: var(--tg-color-scheme);
@@ -576,6 +577,7 @@
             padding: 0;
             color-scheme: var(--tg-color-scheme);
         } */
+        
         #viewport {
             position: fixed;
             left: 0;
@@ -656,8 +658,8 @@
     <button class="keyboard-btn" onclick="toggleKeyboard()">Клавиатура</button>
     <input type="text" id="hiddenInput" style="position: absolute; top: -9999px; left: -9999px;">
     <main>
-        <h1>Выдача</h1>
         <form id="dataForm">
+            <h1>Выдача</h1>
             <label for="branch">Отделения:</label>
             <select id="branch" name="branch" required></select>
 
